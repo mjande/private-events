@@ -70,3 +70,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+# Use devise for user authentication [https://github.com/heartcombo/devise]
+gem 'devise', '~> 4.8', '>= 4.8.1'
