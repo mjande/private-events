@@ -73,3 +73,5 @@ end
 
 # Use devise for user authentication [https://github.com/heartcombo/devise]
 gem 'devise', '~> 4.8', '>= 4.8.1'
+
+gem "tailwindcss-rails", "~> 2.0"
