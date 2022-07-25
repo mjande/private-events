@@ -1,13 +1,5 @@
 <p style="color: green"><%= notice %></p>
 
-<% if user_signed_in? %>
-  <%= link_to "Edit account", edit_user_registration_path %>
-  <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to "Sign in", new_user_session_path %>
-  <%= link_to "Create account", new_user_registration_path %>
-<% end %>
-
 <h1>All Events</h1>
 
 <div id="events">
