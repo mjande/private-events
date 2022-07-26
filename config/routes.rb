@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
+
+  resources :users, only: :show
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   root "events#index"
