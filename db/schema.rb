@@ -17,8 +17,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_133351) do
     t.string "name"
     t.date "date"
     t.time "time"
-    t.integer "users_id", null: false
-    t.index ["users_id"], name: "index_events_on_users_id"
+    t.integer "creator_id", null: false
+    t.index ["creator_id"], name: "index_events_on_creator_id"
   end
 
   create_table "invites", force: :cascade do |t|
@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_133351) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "events", "users", column: "users_id"
+  add_foreign_key "events", "users", column: "creator_id"
   add_foreign_key "invites", "events", column: "attended_event_id"
   add_foreign_key "invites", "users", column: "attendee_id"
 end
