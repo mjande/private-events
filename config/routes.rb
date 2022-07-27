@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :events
+  resources :events do
+    resources :invites
+  end
 
   devise_scope :user do
     # Redirests signing out users back to sign-in

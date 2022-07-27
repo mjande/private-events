@@ -5,6 +5,12 @@
     <div class="p-2">Created by: <%= "#{event.creator.first_name} #{event.creator.last_name}" %></div>
     <div class="p-2"><%= "#{Date::MONTHNAMES[event.date.month]} #{event.date.day} #{event.date.year}" %></div>
     <div class="p-2"><%= event.time.to_fs(:time)%></div>
+
+    <% if user_signed_in? %>
+      <%= link_to "Attend this event", new_event_invite_path(event) %>
+    <% end %>
+
+
     <p class="p-2 underline text-blue-400">
       <%= link_to "Show this event", event %>
     </p>
