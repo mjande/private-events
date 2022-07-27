@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates :password, length: { in: 6..20 }, if: :password_required?
 
   has_many :created_events, class_name: "Event", foreign_key: "creator_id"
+  
 
   protected
 
