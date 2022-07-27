@@ -2,6 +2,7 @@
   <div class="w-64 m-6 border-2 border-black rounded-lg">
     <%= image_tag "placeholder.jpeg" %>
     <div class="p-2"><%= event.name %></div>
+    <div class="p-2">Created by: <%= "#{event.creator.first_name} #{event.creator.last_name}" %></div>
     <div class="p-2"><%= "#{Date::MONTHNAMES[event.date.month]} #{event.date.day} #{event.date.year}" %></div>
     <div class="p-2"><%= event.time.to_fs(:time)%></div>
     <p class="p-2 underline text-blue-400">
