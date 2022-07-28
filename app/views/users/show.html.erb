@@ -9,13 +9,24 @@
 </div>
 
 <div class="border border-gray-500 border-solid w-1/2 m-6">
-  <div class='p-2 text-lg semibold underline'>Attended Events</div>
+  <div class='p-2 text-lg semibold underline'>Future Events</div>
   <% @attended_events.each do |event| %>
+    <% if event.date > Date.today %>
+      <div class="p-2">
+        <%= event.name %>
+        <%= "#{Date::MONTHNAMES[event.date.month]} #{event.date.day}, #{event.date.year}" %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class='p-2 text-lg semibold underline'>Past Events</div>
+  <% @attended_events.each do |event| %>
+  <% if event.date < Date.today %>
     <div class="p-2">
       <%= event.name %>
       <%= "#{Date::MONTHNAMES[event.date.month]} #{event.date.day}, #{event.date.year}" %>
     </div>
   <% end %>
+<% end %>
 </div>
 
 <%= link_to "Back to events", events_path%>
