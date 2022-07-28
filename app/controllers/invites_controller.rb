@@ -3,7 +3,7 @@ class InvitesController < ApplicationController
     @invite = Invite.new(invite_params)
 
     if @invite.save
-      redirect_to root_path, notice: "You are now attending this event."
+      redirect_to event_path(Event.find(@invite.attended_event_id)), notice: "You are now attending this event."
     else
       render :new, notice: "There was an error!"
     end
@@ -13,7 +13,7 @@ class InvitesController < ApplicationController
     @invite = Invite.find_by(invite_params)
     @invite.destroy
 
-    redirect_to root_path, notice: "You are no longer attending this event."
+    redirect_to event_path(Event.find(@invite.attended_event_id)), notice: "You are no longer attending this event."
   end
 
   private
