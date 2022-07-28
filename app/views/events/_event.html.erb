@@ -5,7 +5,7 @@
     <div class="p-2">Created by: <%= "#{event.creator.first_name} #{event.creator.last_name}" %></div>
     <div class="p-2"><%= "#{Date::MONTHNAMES[event.date.month]} #{event.date.day} #{event.date.year}" %> <%= event.time.to_fs(:time)%></div>
 
-    <%= render partial: "events/invites/attendance", locals: { event: event } %>
+    <%#= render partial: "events/invites/attendance", locals: { event: event } %>
 
     <p class="p-2 underline text-blue-400">
       <%= link_to "Show this event", event %>
