@@ -8,6 +8,7 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
+    @attendees = User.where(id: @event.invites.select(:attendee_id)).each
   end
 
   # GET /events/new
