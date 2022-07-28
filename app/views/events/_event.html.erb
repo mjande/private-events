@@ -6,23 +6,7 @@
     <div class="p-2"><%= "#{Date::MONTHNAMES[event.date.month]} #{event.date.day} #{event.date.year}" %></div>
     <div class="p-2"><%= event.time.to_fs(:time)%></div>
 
-    <% if user_signed_in? && !event.invites.where(attendee_id: current_user.id).exists? %>
-      <div >
-        <%= form_with model: [event, Invite.new] do |f| %>
-          <%= f.hidden_field :attended_event_id, value: event.id %>
-          <%= f.hidden_field :attendee_id, value: current_user.id %>
-          <div class="p-2 underline text-blue-500 "><%= f.submit "Attend this event" %></div>
-        <% end %>
-      </div>
-    <% elsif user_signed_in? && event.invites.where(attendee_id: current_user.id).exists? %>
-      <div>
-        <%= form_with model: [event, Invite.find_by(attended_event_id: event.id, attendee_id: current_user.id)], method: :delete do |f| %>
-          <%= f.hidden_field :attended_event_id, value: event.id %>
-          <%= f.hidden_field :attendee_id, value: current_user.id %>
-          <div class="p-2 underline text-blue-500"><%= f.submit "No longer attending this event" %></div>
-        <% end %>
-      </div>
-    <% end %>
+    <%= render partial: "events/invites/attendance", locals: { event: event } %>
 
     <p class="p-2 underline text-blue-400">
       <%= link_to "Show this event", event %>
