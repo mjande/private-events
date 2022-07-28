@@ -1,4 +1,5 @@
 <% if user_signed_in? && !event.invites.where(attendee_id: current_user.id).exists? %>
+  <p class="p-2">Status: Not Going</p>
   <div >
     <%= form_with model: [event, Invite.new] do |f| %>
       <%= f.hidden_field :attended_event_id, value: event.id %>
@@ -7,6 +8,7 @@
     <% end %>
   </div>
 <% elsif user_signed_in? && event.invites.where(attendee_id: current_user.id).exists? %>
+  <p class="p-2">Status: Going</p>
   <div>
     <%= form_with model: [event, Invite.find_by(attended_event_id: event.id, attendee_id: current_user.id)], method: :delete do |f| %>
       <%= f.hidden_field :attended_event_id, value: event.id %>
