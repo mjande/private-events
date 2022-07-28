@@ -1,9 +1,4 @@
 class InvitesController < ApplicationController
-  def new
-    @invite = Invite.new
-    @event = Event.find(params[:event_id])
-  end
-
   def create
     @invite = Invite.new(invite_params)
 
@@ -12,6 +7,13 @@ class InvitesController < ApplicationController
     else
       render :new, notice: "There was an error!"
     end
+  end
+
+  def destroy
+    @invite = Invite.find_by(invite_params)
+    @invite.destroy
+
+    redirect_to root_path, notice: "You are no longer attending this event."
   end
 
   private
