@@ -1,9 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<h1 class="m-6 font-semibold text-xl">All Events</h1>
-
+<h1 class="m-6 font-semibold text-xl">Upcoming Events</h1>
 <div id="events" class="flex flex-wrap">
-  <% @events.each do |event| %>
+  <% @events.upcoming.each do |event| %>
+    <div><%= render event %></div>
+  <% end %>
+</div>
+
+<h1 class="m-6 font-semibold text-xl">Past Events</h1>
+<div id="events" class="flex flex-wrap">
+  <% @events.past.each do |event| %>
     <div><%= render event %></div>
   <% end %>
 </div>
