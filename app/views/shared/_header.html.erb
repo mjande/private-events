@@ -1,12 +1,18 @@
-<div class="flex bg-sky-400 h-14 justify-end items-center gap-5 p-2">
+<div class="flex bg-sky-400 h-14 justify-between items-center p-2">
+  <div class="bg-amber-50 rounded-xl py-1.5 px-3 ml-5"><%= link_to "Home", root_path %></div>
+  
   <% if current_page?(new_user_registration_path) || current_page?(edit_user_registration_path) || current_page?(new_user_session_path) || current_page?(destroy_user_session_path) %>
     <div></div>
   <% elsif user_signed_in? %>
-    <div class="bg-amber-50 rounded-xl py-1.5 px-2"><%= link_to "Profile", "users/#{current_user.id}" %></div>
-    <div class="bg-amber-50 rounded-xl py-1.5 px-2"><%= link_to "Edit account", edit_user_registration_path %></div>
-    <div class="bg-amber-50 rounded-xl py-1.5 px-2 mr-5"><%= button_to "Sign out", destroy_user_session_path, method: :delete %></div>
+    <div class="flex gap-5">
+      <div class="bg-amber-50 rounded-xl py-1.5 px-3"><%= link_to "Profile", "users/#{current_user.id}" %></div>
+      <div class="bg-amber-50 rounded-xl py-1.5 px-3"><%= link_to "Edit account", edit_user_registration_path %></div>
+      <div class="bg-amber-50 rounded-xl py-1.5 px-3 mr-5"><%= button_to "Sign out", destroy_user_session_path, method: :delete %></div>
+    </div>
   <% else %>
-    <div class="bg-amber-50 rounded-xl py-1.5 px-2"><%= link_to "Sign in", new_user_session_path %></div>
-    <div class="bg-amber-50 rounded-xl py-1.5 px-2 mr-5"><%= link_to "Create account", new_user_registration_path %></div>
+    <div class="flex gap-5">
+      <div class="bg-amber-50 rounded-xl py-1.5 px-3"><%= link_to "Sign in", new_user_session_path %></div>
+      <div class="bg-amber-50 rounded-xl py-1.5 px-3 mr-5"><%= link_to "Create account", new_user_registration_path %></div>
+    </div>
   <% end %>
 </div>
