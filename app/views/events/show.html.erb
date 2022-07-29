@@ -7,11 +7,11 @@
 
 <% if current_user == @event.creator %>
   <div class="p-2">
-    <%= link_to "Invite users", new_event_invite_path(@event) %>
+    <%= link_to "Invite users", event_invites_path(@event) %>
   </div>
 <% end %>
 
-<%#= render partial: "events/invites/attendance", locals: { event: @event } %>
+<%= render partial: "invites/attendance", locals: { event: @event, invite: @invite } %>
 
 <div class="border border-gray-500 border-solid w-1/2 m-2">
   <div class="p-2 underline semibold text-lg">Attendees</div>
@@ -19,6 +19,7 @@
     <div class="p-2">No one yet...</div>
   <% end %>
   <%  @attendees.each do |attendee| %>
+    
     <div class="p-2">
       <%= attendee.first_name %>
       <%= attendee.last_name %>

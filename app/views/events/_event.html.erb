@@ -5,7 +5,9 @@
     <div class="p-2">Created by: <%= "#{event.creator.first_name} #{event.creator.last_name}" %></div>
     <div class="p-2"><%= "#{Date::MONTHNAMES[event.date.month]} #{event.date.day} #{event.date.year}" %> <%= event.time.to_fs(:time)%></div>
 
-    <%#= render partial: "events/invites/attendance", locals: { event: event } %>
+    <% if user_signed_in? && event.invites.where(attendee_id: current_user.id).exists? %>
+      <%= render partial: "invites/attendance", locals: { event: event, invite: event.invites.find_by(attendee_id: current_user.id) } %>
+    <% end %>
 
     <p class="p-2 underline text-blue-400">
       <%= link_to "Show this event", event %>

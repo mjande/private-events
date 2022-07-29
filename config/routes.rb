@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :events do
-    resources :invites, only: [:new, :create, :destroy]
+    resources :invites, only: [:new, :index, :edit, :update, :create, :destroy]
   end
 
   devise_scope :user do

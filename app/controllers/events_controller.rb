@@ -8,7 +8,9 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
-    @attendees = User.where(id: @event.invites.select(:attendee_id)).each
+    accepted_invites = Invite.where(attended_event_id: @event.id).where(status: "Going")
+    @attendees = User.where(id: accepted_invites.select(:attendee_id))
+    @invite = @event.invites.find_by(attendee_id: current_user.id)
   end
 
   # GET /events/new

@@ -1,0 +1,35 @@
+<%= image_tag "placeholder.jpeg" %>
+<div class="p-2"><%= @event.name %></div>
+<div class="p-2">Created by: <%= "#{@event.creator.first_name} #{@event.creator.last_name}" %></div>
+<div class="p-2"><%= "#{Date::MONTHNAMES[@event.date.month]} #{@event.date.day}, #{@event.date.year}" %> <%= @event.time.to_fs(:time)%></div>
+
+<% User.all.each do |user| %>
+  <div class="flex gap-2 items-center m-2">
+    <!-- Uninvite a user who has been invited -->
+    <% if user.invites.where(attended_event_id: @event.id).exists? %>
+      <div class="border border-black border-solid rounded-md px-2 py-1">
+        <%= button_to "Uninvite", event_invite_path(@event, user.invites.find_by(attended_event_id: @event.id)), method: :delete %>
+      </div>
+    <% else %>
+    <!-- Invite user who is not invited -->
+      <div class="border border-black border-solid rounded-md px-2 py-1">
+        <%= form_with model: [@event, Invite.new] do |f| %>
+          <%= f.hidden_field :attended_event_id, value: @event.id %>
+          <%= f.hidden_field :attendee_id, value: user.id %>
+          <%= f.hidden_field :status, value: "Invited" %>
+          <%= f.submit "Invite" %>
+        <% end %>
+      </div>
+    <% end %>
+    <div>
+      <%= "#{user.first_name} #{user.last_name}" %> -
+    </div>
+    <div>
+      <% if user.invites.where(attended_event_id: @event.id).exists? %>
+        <%= user.invites.find_by(attended_event_id: @event.id).status %>
+      <% else %>
+        <div>Not Invited</div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

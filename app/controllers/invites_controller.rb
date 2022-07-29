@@ -1,24 +1,33 @@
 class InvitesController < ApplicationController
-  def new
-    @event = Event.find(params[:event_id])
-  end
-  
   def create
     @invite = Invite.new(invite_params)
-    @event = Event.find(invite_params[:attended_event_id])
+    @event = Event.find(params[:event_id])
 
     if @invite.save
-      redirect_to new_event_invite_path(@event)
+      redirect_to event_invites_path(@event)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
+  def index
+    @event = Event.find(params[:event_id])
+  end
+
+  def update
+    @invite = Invite.find(params[:id])
+    if @invite.update(invite_params)
+      redirect_to Event.find(invite_params[:attended_event_id]), notice: "You are now attending this event."
+    else
+      render Event.find(invite_params[:attended_event_id]), notice: "There was an error."
+    end
+  end
+
   def destroy
-    @invite = Invite.find_by(invite_params)
+    @invite = Invite.find(params[:id])
     @invite.destroy
 
-    redirect_to event_path(Event.find(@invite.attended_event_id)), notice: "You are no longer attending this event."
+    redirect_to event_invites_path(Event.find(@invite.attended_event_id)), notice: "You are no longer attending this event."
   end
 
   private
