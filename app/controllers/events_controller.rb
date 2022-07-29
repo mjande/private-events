@@ -8,7 +8,7 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
-    accepted_invites = Invite.where(attended_event_id: @event.id).where(status: "Going")
+    accepted_invites = Invite.where(attended_event_id: @event.id).where(status: "Attending")
     @attendees = User.where(id: accepted_invites.select(:attendee_id))
     @invite = @event.invites.find_by(attendee_id: current_user.id)
   end

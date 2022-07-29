@@ -1,15 +1,15 @@
 <p class="p-2">Status: <%= invite.status %></p>
 
-<% if (invite.status == "Invited" || invite.status == "Not Going") %>
+<% if (invite.status == "Invited" || invite.status == "Not Attending") %>
   <div >
     <%= form_with model: [event, invite] do |f| %>
-      <%= f.hidden_field :status, value: "Going" %>
+      <%= f.hidden_field :status, value: "Attending" %>
       <div class="p-2 underline text-blue-500 "><%= f.submit "Attend this event" %></div>
     <% end %>
   </div>
-<% elsif invite.status == "Going" %>
+<% elsif invite.status == "Attending" %>
   <%= form_with model: [event, invite] do |f| %>
-    <%= f.hidden_field :status, value: "Not Going" %>
+    <%= f.hidden_field :status, value: "Not Attending" %>
     <div class="p-2 underline text-blue-500 "><%= f.submit "I'm no longer attending this event" %></div>
   <% end %>
 <% end %>
