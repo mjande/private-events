@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<%= image_tag "placeholder.jpeg" %>
+<%= image_tag "placeholder.jpg" %>
 <div class="p-2"><%= @event.name %></div>
 <div class="p-2">Created by: <%= "#{@event.creator.first_name} #{@event.creator.last_name}" %></div>
 <div class="p-2"><%= "#{Date::MONTHNAMES[@event.date.month]} #{@event.date.day}, #{@event.date.year}" %> <%= @event.time.to_fs(:time)%></div>
