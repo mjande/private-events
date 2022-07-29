@@ -3,7 +3,7 @@
 <div class="p-2">Created by: <%= "#{@event.creator.first_name} #{@event.creator.last_name}" %></div>
 <div class="p-2"><%= "#{Date::MONTHNAMES[@event.date.month]} #{@event.date.day}, #{@event.date.year}" %> <%= @event.time.to_fs(:time)%></div>
 
-<% User.all.each do |user| %>
+<% User.where("id <> ?", @event.creator.id).each do |user| %>
   <div class="flex gap-2 items-center m-2">
     <!-- Uninvite a user who has been invited -->
     <% if user.invites.where(attended_event_id: @event.id).exists? %>

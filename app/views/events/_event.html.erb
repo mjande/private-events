@@ -1,16 +1,14 @@
-<div id="<%= dom_id event %>">
-  <div class="w-64 m-6 border-2 border-black rounded-lg">
-    <%= image_tag "placeholder.jpeg" %>
-    <div class="p-2"><%= event.name %></div>
-    <div class="p-2">Created by: <%= "#{event.creator.first_name} #{event.creator.last_name}" %></div>
-    <div class="p-2"><%= "#{Date::MONTHNAMES[event.date.month]} #{event.date.day} #{event.date.year}" %> <%= event.time.to_fs(:time)%></div>
+<div id="<%= dom_id event %>" class="w-72 m-6 border-2 border-black rounded-lg">
+  <%= image_tag "placeholder.jpeg" %>
+  <div class="p-2"><%= event.name %></div>
+  <div class="p-2">Created by: <%= "#{event.creator.first_name} #{event.creator.last_name}" %></div>
+  <div class="p-2"><%= "#{Date::MONTHNAMES[event.date.month]} #{event.date.day} #{event.date.year}" %> <%= event.time.to_fs(:time)%></div>
 
-    <% if user_signed_in? && event.invites.where(attendee_id: current_user.id).exists? %>
-      <%= render partial: "invites/attendance", locals: { event: event, invite: event.invites.find_by(attendee_id: current_user.id) } %>
-    <% end %>
+  <% if user_signed_in? && event.invites.where(attendee_id: current_user.id).exists? %>
+    <%= render partial: "invites/attendance", locals: { event: event, invite: event.invites.find_by(attendee_id: current_user.id) } %>
+  <% end %>
 
-    <p class="p-2 underline text-blue-400">
-      <%= link_to "Show this event", event %>
-    </p>
-  </div>
+  <p class="p-2 underline text-blue-400">
+    <%= link_to "Show this event", event %>
+  </p>
 </div>

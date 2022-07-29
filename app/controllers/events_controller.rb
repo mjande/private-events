@@ -1,9 +1,10 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /events
   def index
-    @events = Event.all
+    @events = Event.where(id: Invite.where(attendee_id: current_user.id).select(:attended_event_id)).or(Event.where(creator_id: current_user))
   end
 
   # GET /events/1
@@ -26,7 +27,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
 
-    if @event.save
+    if @event.save 
       redirect_to event_url(@event), notice: "Event was successfully created." 
     else
         render :new, status: :unprocessable_entity 

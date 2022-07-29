@@ -11,13 +11,15 @@
   </div>
 <% end %>
 
-<%= render partial: "invites/attendance", locals: { event: @event, invite: @invite } %>
+<% unless current_user == @event.creator %>
+  <%= render partial: "invites/attendance", locals: { event: @event, invite: @invite } %>
+<% end %>
 
 <div class="border border-gray-500 border-solid w-1/2 m-2">
   <div class="p-2 underline semibold text-lg">Attendees</div>
-  <% if @attendees.none? %>
-    <div class="p-2">No one yet...</div>
-  <% end %>
+  <div class="p-2">
+    <%= @event.creator.first_name %> <%= @event.creator.last_name %>
+  </div>
   <%  @attendees.each do |attendee| %>
     
     <div class="p-2">

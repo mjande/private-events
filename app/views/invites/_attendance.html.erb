@@ -1,6 +1,6 @@
 <p class="p-2">Status: <%= invite.status %></p>
 
-<% if (invite.status == "Invited" || invite.status == "Not Attending") %>
+<% if invite.status == "Invited" || invite.status == "Not Attending" %>
   <div >
     <%= form_with model: [event, invite] do |f| %>
       <%= f.hidden_field :status, value: "Attending" %>

@@ -1,4 +1,6 @@
 class InvitesController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @invite = Invite.new(invite_params)
     @event = Event.find(params[:event_id])
@@ -16,6 +18,7 @@ class InvitesController < ApplicationController
 
   def update
     @invite = Invite.find(params[:id])
+
     if @invite.update(invite_params)
       redirect_to Event.find(invite_params[:attended_event_id]), notice: "You are now attending this event."
     else
@@ -24,6 +27,7 @@ class InvitesController < ApplicationController
   end
 
   def destroy
+    @event = Event.find(params[:event_id])
     @invite = Invite.find(params[:id])
     @invite.destroy
 

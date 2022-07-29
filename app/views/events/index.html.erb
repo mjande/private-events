@@ -1,13 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
-<h1 class="m-6 font-semibold text-xl">Upcoming Events</h1>
+<h1 class="mx-6 mt-6 font-semibold text-xl">Upcoming Events</h1>
 <div id="events" class="flex flex-wrap">
   <% @events.upcoming.each do |event| %>
     <div><%= render event %></div>
   <% end %>
 </div>
 
-<h1 class="m-6 font-semibold text-xl">Past Events</h1>
+<h1 class="mx-6 font-semibold text-xl">Past Events</h1>
 <div id="events" class="flex flex-wrap">
   <% @events.past.each do |event| %>
     <div><%= render event %></div>
@@ -15,5 +15,5 @@
 </div>
 
 <% if user_signed_in? %>
-  <%= link_to "New event", new_event_path %>
+  <div class="mx-8 mb-6 underline text-blue-400"><%= link_to "New event", new_event_path %></div>
 <% end %>
