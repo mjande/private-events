@@ -11,19 +11,22 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_07_28_175736) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "events", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
     t.date "date"
     t.time "time"
-    t.integer "creator_id", null: false
+    t.bigint "creator_id", null: false
     t.index ["creator_id"], name: "index_events_on_creator_id"
   end
 
   create_table "invites", force: :cascade do |t|
-    t.integer "attended_event_id", null: false
-    t.integer "attendee_id", null: false
+    t.bigint "attended_event_id", null: false
+    t.bigint "attendee_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
@@ -37,6 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_28_175736) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "last_name"
