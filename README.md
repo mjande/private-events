@@ -4,7 +4,7 @@
 
 This event manager app allows users to create and sign-up for events. This project was completed as part of the curriculum at [The Odin Project](theodinproject.com) and is built using Ruby on Rails. Project specifications can be found [here](https://www.theodinproject.com/lessons/ruby-on-rails-private-events).
 
-[Link to live version](#)
+[Link to live version](https://stark-waters-80934.herokuapp.com)
 
 ## Usage
 
